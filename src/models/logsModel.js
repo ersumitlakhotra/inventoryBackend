@@ -20,11 +20,11 @@ export const createLogsService = async (cid,  uid,  message, ltype, lid,title,ar
 
             if (prev !== next) {
                 if (prev !== '' && next !== '')
-                    logMessage += `${item.title} changed from '${item.prev}' to '${item.next}'\n`;
+                    logMessage += item.title !== "Picture" ? `${item.title} changed from '${item.prev}' to '${item.next}'\n` :  `${item.title} changed\n` ;
                 else if (prev === '')
-                    logMessage += `${item.title} added '${item.next}'\n`;
+                    logMessage += item.title !== "Picture" ? `${item.title} added '${item.next}'\n` : `${item.title} added\n`;
                 else if (next === '')
-                    logMessage += `${item.title} removed '${item.prev}'\n`;
+                    logMessage += item.title !== "Picture" ? `${item.title} removed '${item.prev}'\n`: `${item.title} removed\n` ;
             }
         });
 

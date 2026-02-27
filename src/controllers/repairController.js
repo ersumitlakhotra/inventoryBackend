@@ -34,9 +34,9 @@ export const getAllRepairByEquipmentId = async (req,res,next) => {
 
 
 export const createRepair = async (req,res,next) => {
-    const {  refid, reftype, uid, name, description, expire, status, duedate, quantity, price,notes,kilometer }= req.body;
+    const {  refid, reftype, uid,  description, expire, status, duedate, quantity, price,notes,kilometer,itemsinfo }= req.body;
     try{
-        const data = await createRepairService(req.params.cid, refid,reftype,  uid, name, description, expire, status, duedate, quantity, price,notes,kilometer );
+        const data = await createRepairService(req.params.cid, refid,reftype,  uid,  description, expire, status, duedate, quantity, price,notes,kilometer,itemsinfo );
         handleResponse(res,201,"Created Successfully",data)
     }
     catch(err){
@@ -45,9 +45,9 @@ export const createRepair = async (req,res,next) => {
 };
 
 export const updateRepair = async (req,res,next) => {
-    const { refid,reftype,  uid, name, description, expire, status, duedate, quantity, price,notes,kilometer,unit }= req.body;
+    const { refid,reftype,  uid,  description, expire, status, duedate, quantity, price,notes,kilometer,unit,itemsinfo }= req.body;
     try{
-        const data = await updateRepairService(req.params.cid, req.params.id,refid,reftype, uid, name, description, expire, status, duedate, quantity, price,notes,kilometer,unit  );
+        const data = await updateRepairService(req.params.cid, req.params.id,refid,reftype, uid,  description, expire, status, duedate, quantity, price,notes,kilometer,unit,itemsinfo  );
         if(!data) return handleResponse(res,500,"data not found");
         handleResponse(res,200,"Updated Successfully",data);
     }

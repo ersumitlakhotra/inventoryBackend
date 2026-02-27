@@ -4,7 +4,7 @@ import { createInventory, getAllInventory, getAllInventoryById, updateInventory 
 import { createEquipment, getAllEquipment, getAllEquipmentById, updateEquipment } from "../controllers/equipmentController.js";
 import { createRepair, getAllRepair, getAllRepairByEquipmentId, getAllRepairById, updateRepair } from "../controllers/repairController.js";
 import { getAllLogsById } from "../controllers/logsController.js";
-import { getAllItems, getAllItemsById } from "../controllers/itemsController.js";
+import { createItems, getAllItems, getAllItemsById } from "../controllers/itemsController.js";
 
 const router = express.Router();
 
@@ -34,5 +34,6 @@ router.post("/logs/:cid/:id",getAllLogsById);
 
 router.get("/items/:cid", getAllItems);
 router.post("/items/:cid/:id",getAllItemsById);
+router.post("/items/:cid",createItems);
 
 export default router;
