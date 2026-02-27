@@ -21,7 +21,7 @@ app.use("/api", router);
 
 // Error Handling middleware
 app.use(errorHandling);
-
+{/*
 //testing
 app.get("/", async (req, res) => {
 
@@ -36,7 +36,7 @@ if (process.env.ENV === 'DEV') {
         console.log(`Server is running on http:localhost:${port}`)
     });
 }
-{/**/}
+*/}
 
 const handleRequest = serverless(app);
 
