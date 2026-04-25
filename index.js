@@ -36,8 +36,8 @@ if (process.env.ENV === 'DEV') {
         console.log(`Server is running on http:localhost:${port}`)
     });
 }
-*/}
 
+*/}
 const handleRequest = serverless(app);
 
 export const handler = async (event,context) => {
