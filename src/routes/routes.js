@@ -14,19 +14,19 @@ router.get("/user/:cid", getAllUsers);
 router.get("/user/:cid/:id",getAllUsersById);
 router.post("/user/:cid",createUsers);
 router.put("/user/:cid/:id",updateUsers);
-router.put("/user/picture/:cid/:id",updateUserPicture);
+router.post("/user/picture/:cid",updateUserPicture);
 
 router.get("/inventory/:cid", getAllInventory);
 router.get("/inventory/:cid/:id",getAllInventoryById);
 router.post("/inventory/:cid",createInventory);
 router.put("/inventory/:cid/:id",updateInventory);
-router.put("/inventory/picture/:cid/:id",updateInventoryPicture);
+router.post("/inventory/picture/:cid",updateInventoryPicture);
 
 router.get("/equipment/:cid", getAllEquipment);
 router.get("/equipment/:cid/:id",getAllEquipmentById);
 router.post("/equipment/:cid",createEquipment);
 router.put("/equipment/:cid/:id",updateEquipment);
-router.put("/equipment/picture/:cid/:id",updateEquipmentPicture);
+router.post("/equipment/picture/:cid",updateEquipmentPicture);
 
 router.get("/repair/:cid", getAllRepair);
 router.get("/repair/:cid/:id",getAllRepairById);
