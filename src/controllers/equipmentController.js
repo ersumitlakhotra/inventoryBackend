@@ -1,5 +1,5 @@
 import handleResponse from "../middlewares/handleResponse.js";
-import { getAllEquipmentService, getEquipmentByIdService ,createEquipmentService, updateEquipmentService} from "../models/equipmentModel.js";
+import { getAllEquipmentService, getEquipmentByIdService ,createEquipmentService, updateEquipmentService, updateEquipmentPictureService} from "../models/equipmentModel.js";
 
 
 export const getAllEquipment = async (req, res, next) => {
@@ -40,6 +40,17 @@ export const updateEquipment = async (req,res,next) => {
         const data = await updateEquipmentService(req.params.cid, req.params.id,  uid, unit, plate, vin, model, make, year, status,picture,description,notes );
         if(!data) return handleResponse(res,500,"data not found");
         handleResponse(res,200,"Updated Successfully",data);
+    }
+    catch(err){
+        next(err)
+    }
+};
+
+export const updateEquipmentPicture = async (req,res,next) => {
+    const { id,uid, picture }= req.body;
+    try{
+        const user = await updateEquipmentPictureService(req.params.cid,id,uid, picture);
+        handleResponse(res,200,"Updated Successfully",user);
     }
     catch(err){
         next(err)

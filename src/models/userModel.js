@@ -6,21 +6,26 @@ export const getUserAuthService = async (username, password) => {
     return result.rows;
 };
 export const getAllUsersService = async (cid) => {
-    const result = await pool.query(`SELECT *,encode(profilepic, 'escape') as picture FROM ${tableName} where cid=$1 ORDER BY fullname ASC`, [cid]);
+    const result = await pool.query(`SELECT * FROM ${tableName} where cid=$1 ORDER BY fullname ASC`, [cid]);
     return result.rows;
 }; 
 
  export const getUsersByIdService = async (cid, id) => {
-    const result = await pool.query(`SELECT *,encode(profilepic, 'escape') as picture FROM ${tableName} where id=$1 and cid=$2`, [id, cid]);
+    const result = await pool.query(`SELECT * FROM ${tableName} where id=$1 and cid=$2`, [id, cid]);
     return result.rows;
 };
 
-export const createUsersService = async (cid, fullname, username, password, role, status, profilepic) => {
-    const result = await pool.query(`INSERT INTO ${tableName} (cid,fullname, username, password,  role, status, profilepic ,createdat,modifiedat) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *`, [cid, fullname, username, password,  role, status, profilepic, new Date(), new Date()]);
+export const createUsersService = async (cid, fullname, username, password, role, status) => {
+    const result = await pool.query(`INSERT INTO ${tableName} (cid,fullname, username, password,  role, status, createdat,modifiedat) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *`, [cid, fullname, username, password,  role, status, new Date(), new Date()]);
     return result.rows[0];
 };
 
-export const updateUsersService = async (cid, id, fullname, username, password,  role, status, profilepic ) => {
-    const result = await pool.query(`UPDATE ${tableName} set fullname=$3,username=$4,password=$5, role=$6, status=$7, profilepic=$8,modifiedat=$9 where id=$2 and cid=$1 RETURNING *`, [cid, id, fullname, username, password,  role, status, profilepic, new Date()]);
+export const updateUsersService = async (cid, id, fullname, username, password,  role, status ) => {
+    const result = await pool.query(`UPDATE ${tableName} set fullname=$3,username=$4,password=$5, role=$6, status=$7,modifiedat=$8 where id=$2 and cid=$1 RETURNING *`, [cid, id, fullname, username, password,  role, status,  new Date()]);
+    return result.rows[0];
+};
+
+export const updateUsersPictureService = async (cid, id, picture ) => {
+    const result = await pool.query(`UPDATE ${tableName} set  picture=$3,modifiedat=$4 where id=$2 and cid=$1 RETURNING *`, [cid, id,  picture, new Date()]);
     return result.rows[0];
 };
