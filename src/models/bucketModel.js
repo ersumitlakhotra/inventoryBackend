@@ -14,7 +14,7 @@ export const uploadToS3Service = async( cid,folder,name,type) => {
         const fileKey = `${cid}/${folder}/${name}`;
 
         const command = new PutObjectCommand({
-            Bucket: process.env.S3_BUCKET_NAME,
+            Bucket: 'sgltools',
             Key: fileKey,
             ContentType: type,
         });
